@@ -1,0 +1,42 @@
+============================================================
+           MEDICALVISION AI - RADIOLOGY DECISION SUPPORT
+           ** RESEARCH PROTOTYPE - NOT FOR DIAGNOSTIC USE **
+============================================================
+Study Image:     00000001_000.png
+Analysis Time:   2026-11-08 08:57:59
+Patient ID:      N/A | Age: N/A | Sex: N/A
+View Position:   PA / AP Frontal Projection
+------------------------------------------------------------
+
+[IMPRESSION]
+  * ABNORMAL EXAMINATION - 3 Finding(s) Exceeding Operating Threshold (50%):
+    - Pleural Thickening  : Probability  84.2% [Uncertainty σ=0.04]
+    - Infiltration        : Probability  74.9% [Uncertainty σ=0.06]
+    - Fibrosis            : Probability  70.2% [Uncertainty σ=0.03]
+
+[DETAILED REGIONAL FINDINGS]
+
+  -- Lungs & Parenchyma --
+    * Atelectasis         : 46.8%  [Negative]
+    * Infiltration        : 74.9%  [POSITIVE]
+    * Mass                : 46.5%  [Negative]
+    * Nodule              : 47.7%  [Negative]
+    * Pneumonia           : 32.8%  [Negative]
+    * Consolidation       : 33.1%  [Negative]
+    * Emphysema           : 35.9%  [Negative]
+    * Fibrosis            : 70.2%  [POSITIVE]
+
+  -- Pleura & Diaphragm --
+    * Effusion            : 40.6%  [Negative]
+    * Pneumothorax        : 38.3%  [Negative]
+    * Pleural Thickening  : 84.2%  [POSITIVE]
+    * Hernia              : 21.8%  [Negative]
+
+  -- Cardiac & Vascular --
+    * Cardiomegaly        : 38.3%  [Negative]
+    * Edema               : 40.4%  [Negative]
+
+[RELIABILITY & QUALITY CONTROL]
+  * Model prediction certainty within high confidence boundaries.
+
+============================================================

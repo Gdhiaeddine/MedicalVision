@@ -1,0 +1,47 @@
+{
+  "densenet121": {
+    "name": "DenseNet-121",
+    "parameter_count_million": 6.97,
+    "checkpoint_size_mb": 27.2,
+    "cpu_inference_latency_ms": 44.8,
+    "macro_roc_auc": 0.6027,
+    "macro_pr_auc": 0.1174,
+    "macro_recall": 0.3558,
+    "macro_specificity": 0.7717,
+    "macro_f1": 0.1438,
+    "screening_specificity": 0.7626,
+    "screening_sensitivity": 0.6089,
+    "screening_false_positives": 47,
+    "screening_auc": 0.7198
+  },
+  "resnet50": {
+    "name": "ResNet-50",
+    "parameter_count_million": 23.54,
+    "checkpoint_size_mb": 90.1,
+    "cpu_inference_latency_ms": 43.2,
+    "macro_roc_auc": 0.5904,
+    "macro_pr_auc": 0.0979,
+    "macro_recall": 0.2388,
+    "macro_specificity": 0.8287,
+    "macro_f1": 0.1083,
+    "screening_specificity": 0.7475,
+    "screening_sensitivity": 0.4406,
+    "screening_false_positives": 50,
+    "screening_auc": 0.639
+  },
+  "efficientnet_b0": {
+    "name": "EfficientNet-B0",
+    "parameter_count_million": 4.03,
+    "checkpoint_size_mb": 15.6,
+    "cpu_inference_latency_ms": 26.4,
+    "macro_roc_auc": 0.5866,
+    "macro_pr_auc": 0.1043,
+    "macro_recall": 0.3794,
+    "macro_specificity": 0.7485,
+    "macro_f1": 0.1258,
+    "screening_specificity": 0.6768,
+    "screening_sensitivity": 0.6188,
+    "screening_false_positives": 64,
+    "screening_auc": 0.7175
+  }
+}

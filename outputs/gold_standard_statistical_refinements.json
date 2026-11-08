@@ -1,0 +1,160 @@
+{
+  "operating_points_paired_bootstrap_95ci": {
+    "Spec_80%": {
+      "validation_thresholds": {
+        "th_14": 0.25066664814949036,
+        "th_5": 0.31606990098953247
+      },
+      "model_14_sens_95ci": [
+        0.25,
+        0.4151
+      ],
+      "model_5_sens_95ci": [
+        0.4054,
+        0.5608
+      ],
+      "sens_difference": 0.1537,
+      "sens_difference_95ci": [
+        0.028,
+        0.2715
+      ],
+      "sens_statistically_significant": true,
+      "model_14_spec_95ci": [
+        0.7231,
+        0.8154
+      ],
+      "model_5_spec_95ci": [
+        0.7768,
+        0.8547
+      ]
+    },
+    "Spec_85%": {
+      "validation_thresholds": {
+        "th_14": 0.2546499967575073,
+        "th_5": 0.3682841956615448
+      },
+      "model_14_sens_95ci": [
+        0.1633,
+        0.3137
+      ],
+      "model_5_sens_95ci": [
+        0.3134,
+        0.469
+      ],
+      "sens_difference": 0.1533,
+      "sens_difference_95ci": [
+        0.0389,
+        0.2675
+      ],
+      "sens_statistically_significant": true,
+      "model_14_spec_95ci": [
+        0.804,
+        0.884
+      ],
+      "model_5_spec_95ci": [
+        0.8451,
+        0.9134
+      ]
+    },
+    "Spec_90%": {
+      "validation_thresholds": {
+        "th_14": 0.26147589087486267,
+        "th_5": 0.4327423870563507
+      },
+      "model_14_sens_95ci": [
+        0.0592,
+        0.1733
+      ],
+      "model_5_sens_95ci": [
+        0.1867,
+        0.3352
+      ],
+      "sens_difference": 0.1448,
+      "sens_difference_95ci": [
+        0.0489,
+        0.2414
+      ],
+      "sens_statistically_significant": true,
+      "model_14_spec_95ci": [
+        0.8857,
+        0.9457
+      ],
+      "model_5_spec_95ci": [
+        0.8937,
+        0.9494
+      ]
+    }
+  },
+  "estimand_scan_vs_patient": {
+    "scan_weighted_n500": {
+      "sensitivity": 0.4834,
+      "specificity": 0.8166,
+      "precision_ppv": 0.5328,
+      "roc_auc": 0.7617,
+      "f1": 0.5069
+    },
+    "patient_weighted_n405": {
+      "sensitivity": 0.5897,
+      "specificity": 0.8264,
+      "precision_ppv": 0.5798,
+      "roc_auc": 0.818,
+      "f1": 0.5847
+    },
+    "delta_patient_minus_scan": {
+      "sensitivity_delta": 0.1063,
+      "specificity_delta": 0.0098,
+      "roc_auc_delta": 0.0563
+    }
+  },
+  "subgroups_difference_testing": {
+    "Sex_Women_minus_Men": {
+      "sens_difference_ci95": [
+        -0.1041,
+        0.2185
+      ],
+      "spec_difference_ci95": [
+        -0.0817,
+        0.0779
+      ],
+      "auc_difference_ci95": [
+        -0.084,
+        0.1026
+      ],
+      "sens_significant": false,
+      "spec_significant": false,
+      "conclusion": "No substantial sex-related performance difference was observed in this cohort (all 95% CIs cross 0). However, larger independent cohorts are required to establish subgroup robustness."
+    },
+    "View_AP_minus_PA": {
+      "sens_difference_ci95": [
+        -0.3147,
+        0.0161
+      ],
+      "spec_difference_ci95": [
+        -0.1296,
+        0.0435
+      ],
+      "auc_difference_ci95": [
+        -0.1441,
+        0.0454
+      ],
+      "sens_significant": false,
+      "conclusion": "Lower point sensitivity was observed on AP images compared with PA images. This may reflect acquisition conditions and population differences, but the specific causes require further investigation."
+    }
+  },
+  "standalone_detector_audit": {
+    "module_type": "Standalone Experimental Object Detector (Separate from classification)",
+    "annotated_test_subset_images": 172,
+    "total_false_positives_all_classes": 0,
+    "false_positives_per_image": 0.0,
+    "cardiomegaly_localization": {
+      "ap_at_50": 0.6972,
+      "ap_coco": 0.259,
+      "precision_at_50": 0.0227,
+      "recall_at_50": 0.8,
+      "true_positives": 16,
+      "false_positives": 688,
+      "false_negatives": 4
+    },
+    "critical_boundary_note": "A spatial bounding box detector operating on an annotated lesion subset does not establish or compensate for whole-image disease classification. Object detection and disease classification operate under distinct clinical and statistical assumptions."
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "classification": {
+    "per_class": {
+      "Atelectasis": {
+        "ROC_AUC": 0.550561797752809,
+        "PR_AUC": 0.1641920487728632,
+        "Sensitivity": 0.8181818181818182,
+        "Specificity": 0.15730337078651685,
+        "Precision": 0.10714285714285714,
+        "Accuracy": 0.23,
+        "F1": 0.18947368421052632,
+        "Confusion_Matrix": {
+          "TN": 14,
+          "FP": 75,
+          "FN": 2,
+          "TP": 9
+        },
+        "Total_Positives": 11
+      },
+      "Cardiomegaly": {
+        "ROC_AUC": 0.7353951890034365,
+        "PR_AUC": 0.09843063402385435,
+        "Sensitivity": 1.0,
+        "Specificity": 0.0,
+        "Precision": 0.03,
+        "Accuracy": 0.03,
+        "F1": 0.058252427184466014,
+        "Confusion_Matrix": {
+          "TN": 0,
+          "FP": 97,
+          "FN": 0,
+          "TP": 3
+        },
+        "Total_Positives": 3
+      },
+      "Effusion": {
+        "ROC_AUC": 0.5393338058114813,
+        "PR_AUC": 0.2126920130540514,
+        "Sensitivity": 0.0,
+        "Specificity": 1.0,
+        "Precision": 0.0,
+        "Accuracy": 0.83,
+        "F1": 0.0,
+        "Confusion_Matrix": {
+          "TN": 83,
+          "FP": 0,
+          "FN": 17,
+          "TP": 0
+        },
+        "Total_Positives": 17
+      },
+      "Infiltration": {
+        "ROC_AUC": 0.3678728070175438,
+        "PR_AUC": 0.19910043999859922,
+        "Sensitivity": 0.75,
+        "Specificity": 0.13157894736842105,
+        "Precision": 0.21428571428571427,
+        "Accuracy": 0.28,
+        "F1": 0.3333333333333333,
+        "Confusion_Matrix": {
+          "TN": 10,
+          "FP": 66,
+          "FN": 6,
+          "TP": 18
+        },
+        "Total_Positives": 24
+      },
+      "Mass": {
+        "ROC_AUC": 0.39716312056737585,
+        "PR_AUC": 0.05541379459370089,
+        "Sensitivity": 1.0,
+        "Specificity": 0.07446808510638298,
+        "Precision": 0.06451612903225806,
+        "Accuracy": 0.13,
+        "F1": 0.12121212121212122,
+        "Confusion_Matrix": {
+          "TN": 7,
+          "FP": 87,
+          "FN": 0,
+          "TP": 6
+        },
+        "Total_Positives": 6
+      },
+      "Nodule": {
+        "ROC_AUC": 0.4904891304347826,
+        "PR_AUC": 0.08638254271054702,
+        "Sensitivity": 0.0,
+        "Specificity": 1.0,
+        "Precision": 0.0,
+        "Accuracy": 0.92,
+        "F1": 0.0,
+        "Confusion_Matrix": {
+          "TN": 92,
+          "FP": 0,
+          "FN": 8,
+          "TP": 0
+        },
+        "Total_Positives": 8
+      },
+      "Pneumonia": {
+        "ROC_AUC": 0.7171717171717171,
+        "PR_AUC": 0.034482758620689655,
+        "Sensitivity": 0.0,
+        "Specificity": 1.0,
+        "Precision": 0.0,
+        "Accuracy": 0.99,
+        "F1": 0.0,
+        "Confusion_Matrix": {
+          "TN": 99,
+          "FP": 0,
+          "FN": 1,
+          "TP": 0
+        },
+        "Total_Positives": 1
+      },
+      "Pneumothorax": {
+        "ROC_AUC": 0.4348958333333333,
+        "PR_AUC": 0.04640720572093121,
+        "Sensitivity": 1.0,
+        "Specificity": 0.052083333333333336,
+        "Precision": 0.042105263157894736,
+        "Accuracy": 0.09,
+        "F1": 0.08080808080808081,
+        "Confusion_Matrix": {
+          "TN": 5,
+          "FP": 91,
+          "FN": 0,
+          "TP": 4
+        },
+        "Total_Positives": 4
+      },
+      "Consolidation": {
+        "ROC_AUC": 0.4700854700854701,
+        "PR_AUC": 0.09562722173796849,
+        "Sensitivity": 0.4444444444444444,
+        "Specificity": 0.43956043956043955,
+        "Precision": 0.07272727272727272,
+        "Accuracy": 0.44,
+        "F1": 0.125,
+        "Confusion_Matrix": {
+          "TN": 40,
+          "FP": 51,
+          "FN": 5,
+          "TP": 4
+        },
+        "Total_Positives": 9
+      },
+      "Edema": {
+        "ROC_AUC": 0.5975177304964538,
+        "PR_AUC": 0.09289992419585269,
+        "Sensitivity": 1.0,
+        "Specificity": 0.031914893617021274,
+        "Precision": 0.061855670103092786,
+        "Accuracy": 0.09,
+        "F1": 0.11650485436893204,
+        "Confusion_Matrix": {
+          "TN": 3,
+          "FP": 91,
+          "FN": 0,
+          "TP": 6
+        },
+        "Total_Positives": 6
+      },
+      "Emphysema": {
+        "ROC_AUC": 0.5017182130584192,
+        "PR_AUC": 0.04433082265838327,
+        "Sensitivity": 0.6666666666666666,
+        "Specificity": 0.4742268041237113,
+        "Precision": 0.03773584905660377,
+        "Accuracy": 0.48,
+        "F1": 0.07142857142857142,
+        "Confusion_Matrix": {
+          "TN": 46,
+          "FP": 51,
+          "FN": 1,
+          "TP": 2
+        },
+        "Total_Positives": 3
+      },
+      "Fibrosis": {
+        "ROC_AUC": 0.8181818181818181,
+        "PR_AUC": 0.05263157894736842,
+        "Sensitivity": 1.0,
+        "Specificity": 0.0,
+        "Precision": 0.01,
+        "Accuracy": 0.01,
+        "F1": 0.019801980198019802,
+        "Confusion_Matrix": {
+          "TN": 0,
+          "FP": 99,
+          "FN": 0,
+          "TP": 1
+        },
+        "Total_Positives": 1
+      },
+      "Pleural_Thickening": {
+        "ROC_AUC": 0.7136842105263158,
+        "PR_AUC": 0.136489898989899,
+        "Sensitivity": 0.8,
+        "Specificity": 0.4,
+        "Precision": 0.06557377049180328,
+        "Accuracy": 0.42,
+        "F1": 0.12121212121212123,
+        "Confusion_Matrix": {
+          "TN": 38,
+          "FP": 57,
+          "FN": 1,
+          "TP": 4
+        },
+        "Total_Positives": 5
+      },
+      "Hernia": {
+        "ROC_AUC": 0.5,
+        "PR_AUC": 0.0,
+        "Sensitivity": 0.0,
+        "Specificity": 0.04,
+        "Precision": 0.0,
+        "Accuracy": 0.04,
+        "F1": 0.0,
+        "Confusion_Matrix": {
+          "TN": 4,
+          "FP": 96,
+          "FN": 0,
+          "TP": 0
+        },
+        "Total_Positives": 0
+      }
+    },
+    "macro_metrics": {
+      "Mean_ROC_AUC": 0.5641592956493044,
+      "Mean_PR_AUC": 0.10146776030959298,
+      "Mean_Sensitivity": 0.6056637806637807,
+      "Mean_Specificity": 0.34293827670684474,
+      "Mean_F1": 0.0883590838540123
+    },
+    "binary_normal_abnormal": {
+      "TN": 0,
+      "FP": 37,
+      "FN": 0,
+      "TP": 63,
+      "Accuracy": 0.63,
+      "Precision": 0.63,
+      "Sensitivity": 1.0,
+      "Specificity": 0.0
+    }
+  },
+  "detection": {
+    "Evaluated_BBoxes": 40,
+    "Mean_IoU": 0.018252431618030116,
+    "mAP@0.5": 0.0,
+    "mAP@0.5:0.95": 0.0,
+    "Detection_Precision@0.5": 0.0,
+    "Detection_Recall@0.5": 0.0,
+    "Detection_Precision@0.25": 0.0,
+    "Detection_Recall@0.25": 0.0,
+    "Detection_Rate@0.10": 0.05
+  }
+}

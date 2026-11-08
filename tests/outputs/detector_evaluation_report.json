@@ -1,0 +1,78 @@
+{
+  "mAP_at_50": 0.0872,
+  "mAP_at_50_95": 0.0324,
+  "per_class": {
+    "Atelectasis": {
+      "ap_at_50": 0.0,
+      "ap_coco_50_95": 0.0,
+      "precision_at_50": 0.0,
+      "recall_at_50": 0.0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 39
+    },
+    "Cardiomegaly": {
+      "ap_at_50": 0.6972,
+      "ap_coco_50_95": 0.259,
+      "precision_at_50": 0.0227,
+      "recall_at_50": 0.8,
+      "tp": 24,
+      "fp": 1033,
+      "fn": 6
+    },
+    "Effusion": {
+      "ap_at_50": 0.0,
+      "ap_coco_50_95": 0.0,
+      "precision_at_50": 0.0,
+      "recall_at_50": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 29
+    },
+    "Infiltrate": {
+      "ap_at_50": 0.0,
+      "ap_coco_50_95": 0.0,
+      "precision_at_50": 0.0,
+      "recall_at_50": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 24
+    },
+    "Mass": {
+      "ap_at_50": 0.0,
+      "ap_coco_50_95": 0.0,
+      "precision_at_50": 0.0,
+      "recall_at_50": 0.0,
+      "tp": 0,
+      "fp": 4,
+      "fn": 19
+    },
+    "Nodule": {
+      "ap_at_50": 0.0,
+      "ap_coco_50_95": 0.0,
+      "precision_at_50": 0.0,
+      "recall_at_50": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 17
+    },
+    "Pneumonia": {
+      "ap_at_50": 0.0,
+      "ap_coco_50_95": 0.0,
+      "precision_at_50": 0.0,
+      "recall_at_50": 0.0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 26
+    },
+    "Pneumothorax": {
+      "ap_at_50": 0.0,
+      "ap_coco_50_95": 0.0,
+      "precision_at_50": 0.0,
+      "recall_at_50": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 15
+    }
+  }
+}

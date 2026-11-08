@@ -1,0 +1,57 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Caches and testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# NIH ChestX-ray14 Datasets & Raw Images (Heavy Files)
+CXR8/
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.tiff
+*.dicom
+*.dcm
+
+# Whitelist documentation and artifact figures
+!outputs/locked_screening_curves.png
+!docs/images/*
+!assets/*
+
+# Large Checkpoints & PyTorch Weights
+outputs/checkpoints/
+*.pth
+*.pt
+*.bin
+*.h5
+*.onnx
+*.safetensors
+
+# Logs & Temporary files
+*.log
+.system_generated/
+scratch/
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
