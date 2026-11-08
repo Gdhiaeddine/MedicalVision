@@ -4,6 +4,17 @@ from PIL import Image
 import torch
 import gradio as gr
 
+# Hugging Face ZeroGPU support
+try:
+    import spaces
+except ImportError:
+    class spaces:
+        @staticmethod
+        def GPU(fn=None, **kwargs):
+            if fn is None or not callable(fn):
+                return lambda f: f
+            return fn
+
 from medicalvision.models.classifier import build_model
 from medicalvision.config_5class import FIVE_DISEASE_CLASSES
 from medicalvision.interpretability.gradcam import GradCAM, overlay_heatmap_on_image
@@ -25,20 +36,20 @@ _MODEL = None
 def get_model():
     global _MODEL
     if _MODEL is None:
-        device = "cuda" if torch.cuda.is_available() else "cpu"
         has_ckpt = CHECKPOINT_PATH.exists()
         model = build_model(
             backbone="densenet121",
             num_classes=len(FIVE_DISEASE_CLASSES),
             pretrained=False if has_ckpt else True,
             checkpoint_path=str(CHECKPOINT_PATH) if has_ckpt else None,
-            device=device,
+            device="cpu",
         )
         model.eval()
         _MODEL = model
     return _MODEL
 
 
+@spaces.GPU
 def analyze_xray(
     image: Image.Image,
     target_disease: str,
@@ -48,8 +59,9 @@ def analyze_xray(
     if image is None:
         return None, None, "⚠️ Veuillez charger ou sélectionner un cliché thoracique."
 
+    device = "cuda" if torch.cuda.is_available() else "cpu"
     model = get_model()
-    device = next(model.parameters()).device
+    model.to(device)
 
     # Preprocessing
     rgb_img = image.convert("RGB")
