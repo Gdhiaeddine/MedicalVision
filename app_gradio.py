@@ -33,10 +33,29 @@ SAMPLE_DIR = BASE_DIR / "assets" / "sample_scans"
 _MODEL = None
 
 
+def ensure_checkpoint_exists(checkpoint_path: Path):
+    """Ensure model weights are present, downloading from GitHub if needed."""
+    need_download = False
+    if not checkpoint_path.exists():
+        need_download = True
+    elif checkpoint_path.stat().st_size < 10000:
+        need_download = True
+
+    if need_download:
+        checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
+        url = "https://github.com/Gdhiaeddine/MedicalVision/raw/main/outputs/checkpoints/best_model_5class.pth"
+        try:
+            import urllib.request
+            urllib.request.urlretrieve(url, str(checkpoint_path))
+        except Exception:
+            pass
+
+
 def get_model():
     global _MODEL
     if _MODEL is None:
-        has_ckpt = CHECKPOINT_PATH.exists()
+        ensure_checkpoint_exists(CHECKPOINT_PATH)
+        has_ckpt = CHECKPOINT_PATH.exists() and CHECKPOINT_PATH.stat().st_size > 10000
         model = build_model(
             backbone="densenet121",
             num_classes=len(FIVE_DISEASE_CLASSES),

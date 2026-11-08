@@ -14,6 +14,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 import torch
 
+# Base Application Paths (robust across local and cloud environments)
+WORKSPACE_DIR = Path(__file__).resolve().parent
+
 from medicalvision.config import (
     DISEASE_CLASSES,
     IMAGE_DIR,
@@ -99,14 +102,33 @@ def get_cached_model(backbone: str = "densenet121"):
     return model
 
 
+def ensure_checkpoint_exists(checkpoint_path: Path):
+    """Ensure model weights are present (downloads from GitHub if LFS pointer)."""
+    need_download = False
+    if not checkpoint_path.exists():
+        need_download = True
+    elif checkpoint_path.stat().st_size < 10000:
+        need_download = True
+
+    if need_download:
+        checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
+        url = "https://github.com/Gdhiaeddine/MedicalVision/raw/main/outputs/checkpoints/best_model_5class.pth"
+        try:
+            import urllib.request
+            urllib.request.urlretrieve(url, str(checkpoint_path))
+        except Exception:
+            pass
+
+
 @st.cache_resource(show_spinner="Loading 5-Class High-Signal Classifier...")
 def get_cached_5class_model():
     checkpoint_file = CHECKPOINT_DIR / "best_model_5class.pth"
-    has_ckpt = checkpoint_file.exists()
+    ensure_checkpoint_exists(checkpoint_file)
+    has_ckpt = checkpoint_file.exists() and checkpoint_file.stat().st_size > 10000
     model = build_model(
         backbone="densenet121",
         num_classes=len(FIVE_DISEASE_CLASSES),
-        pretrained=False,
+        pretrained=False if has_ckpt else True,
         checkpoint_path=str(checkpoint_file) if has_ckpt else None,
         device="cpu",
     )
@@ -126,10 +148,36 @@ def get_cached_detector():
 
 
 
+def ensure_sample_images_exist(sample_dir: Path):
+    """Ensure sample PNGs are actual image binaries, downloading from GitHub if unpulled LFS pointers."""
+    if not sample_dir.exists():
+        sample_dir.mkdir(parents=True, exist_ok=True)
+
+    sample_files = [
+        "00000001_000.png",
+        "00000001_002.png",
+        "00000002_000.png",
+        "00000008_000.png",
+        "00000013_023.png",
+        "00000025_000.png",
+        "00000032_012.png",
+    ]
+    for fname in sample_files:
+        fpath = sample_dir / fname
+        if not fpath.exists() or fpath.stat().st_size < 1000:
+            url = f"https://github.com/Gdhiaeddine/MedicalVision/raw/main/assets/sample_scans/{fname}"
+            try:
+                import urllib.request
+                urllib.request.urlretrieve(url, str(fpath))
+            except Exception:
+                pass
+
+
 @st.cache_data(show_spinner="Indexing sample X-rays...")
 def get_curated_samples():
     """Find available sample images with interesting pathologies from metadata or bundled cloud assets."""
     sample_assets_dir = WORKSPACE_DIR / "assets" / "sample_scans"
+    ensure_sample_images_exist(sample_assets_dir)
 
     if IMAGE_DIR.exists() and METADATA_FILE.exists():
         df = pd.read_csv(METADATA_FILE)
