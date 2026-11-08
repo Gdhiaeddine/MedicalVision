@@ -1,3 +1,12 @@
+---
+title: MedicalVision AI
+emoji: 🫁
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+---
+
 # 🩻 MedicalVision AI
 **Deep Learning Chest Radiograph Abnormality Screening, Decoupled Multi-Pathology Classification & Grad-CAM Anatomical Localization**
 
