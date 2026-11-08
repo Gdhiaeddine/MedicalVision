@@ -3,8 +3,8 @@ title: MedicalVision AI
 emoji: 🫁
 colorFrom: blue
 colorTo: indigo
-sdk: docker
-app_port: 7860
+sdk: gradio
+app_file: app_gradio.py
 ---
 
 # 🩻 MedicalVision AI
