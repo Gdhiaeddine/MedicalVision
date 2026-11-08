@@ -128,29 +128,93 @@ def get_cached_detector():
 
 @st.cache_data(show_spinner="Indexing sample X-rays...")
 def get_curated_samples():
-    """Find available sample images with interesting pathologies from metadata."""
-    if not METADATA_FILE.exists() or not IMAGE_DIR.exists():
-        return {}
+    """Find available sample images with interesting pathologies from metadata or bundled cloud assets."""
+    sample_assets_dir = WORKSPACE_DIR / "assets" / "sample_scans"
 
-    df = pd.read_csv(METADATA_FILE)
-    existing_imgs = set(os.listdir(IMAGE_DIR))
-    df = df[df["Image Index"].isin(existing_imgs)].reset_index(drop=True)
+    if IMAGE_DIR.exists() and METADATA_FILE.exists():
+        df = pd.read_csv(METADATA_FILE)
+        existing_imgs = set(os.listdir(IMAGE_DIR))
+        df = df[df["Image Index"].isin(existing_imgs)].reset_index(drop=True)
 
-    samples = {}
-    # Pick 1 sample for each classic pathology
-    targets = ["No Finding", "Cardiomegaly", "Effusion", "Pneumonia", "Infiltration", "Atelectasis", "Pneumothorax"]
-    for t in targets:
-        match = df[df["Finding Labels"].str.contains(t, case=False, na=False)]
-        if not match.empty:
-            row = match.iloc[0]
-            samples[f"{t} (Scan #{row['Image Index']})"] = {
-                "filename": row["Image Index"],
-                "labels": row["Finding Labels"],
-                "patient_id": row["Patient ID"],
-                "age": row["Patient Age"],
-                "sex": row["Patient Sex"],
-            }
-    return samples
+        samples = {}
+        targets = ["No Finding", "Cardiomegaly", "Effusion", "Pneumonia", "Infiltration", "Atelectasis", "Pneumothorax"]
+        for t in targets:
+            match = df[df["Finding Labels"].str.contains(t, case=False, na=False)]
+            if not match.empty:
+                row = match.iloc[0]
+                samples[f"{t} (Scan #{row['Image Index']})"] = {
+                    "filename": row["Image Index"],
+                    "path": str(IMAGE_DIR / row["Image Index"]),
+                    "labels": row["Finding Labels"],
+                    "patient_id": row["Patient ID"],
+                    "age": row["Patient Age"],
+                    "sex": row["Patient Sex"],
+                }
+        return samples
+
+    # Fallback to bundled sample scans when deployed on cloud (Streamlit Cloud, Hugging Face)
+    if sample_assets_dir.exists():
+        predefined = {
+            "No Finding (Scan #00000002_000.png)": {
+                "filename": "00000002_000.png",
+                "path": str(sample_assets_dir / "00000002_000.png"),
+                "labels": "No Finding",
+                "patient_id": 2,
+                "age": 81,
+                "sex": "M",
+            },
+            "Cardiomegaly (Scan #00000001_000.png)": {
+                "filename": "00000001_000.png",
+                "path": str(sample_assets_dir / "00000001_000.png"),
+                "labels": "Cardiomegaly",
+                "patient_id": 1,
+                "age": 58,
+                "sex": "M",
+            },
+            "Effusion (Scan #00000001_002.png)": {
+                "filename": "00000001_002.png",
+                "path": str(sample_assets_dir / "00000001_002.png"),
+                "labels": "Cardiomegaly|Effusion",
+                "patient_id": 1,
+                "age": 58,
+                "sex": "M",
+            },
+            "Pneumothorax (Scan #00000013_023.png)": {
+                "filename": "00000013_023.png",
+                "path": str(sample_assets_dir / "00000013_023.png"),
+                "labels": "Infiltration|Mass|Pneumothorax",
+                "patient_id": 13,
+                "age": 57,
+                "sex": "M",
+            },
+            "Consolidation (Scan #00000032_012.png)": {
+                "filename": "00000032_012.png",
+                "path": str(sample_assets_dir / "00000032_012.png"),
+                "labels": "Atelectasis|Consolidation",
+                "patient_id": 32,
+                "age": 55,
+                "sex": "F",
+            },
+            "Cardiomegaly Pure Test (Scan #00000008_000.png)": {
+                "filename": "00000008_000.png",
+                "path": str(sample_assets_dir / "00000008_000.png"),
+                "labels": "Cardiomegaly",
+                "patient_id": 8,
+                "age": 69,
+                "sex": "F",
+            },
+            "Effusion Pure (Scan #00000025_000.png)": {
+                "filename": "00000025_000.png",
+                "path": str(sample_assets_dir / "00000025_000.png"),
+                "labels": "Effusion",
+                "patient_id": 25,
+                "age": 53,
+                "sex": "M",
+            },
+        }
+        return predefined
+
+    return {}
 
 
 def main():
@@ -224,7 +288,7 @@ def main():
             )
             if selected_sample_key and selected_sample_key in samples:
                 info = samples[selected_sample_key]
-                img_path = IMAGE_DIR / info["filename"]
+                img_path = Path(info.get("path", IMAGE_DIR / info["filename"]))
                 if img_path.exists():
                     active_image = Image.open(img_path).convert("RGB")
                     active_filename = info["filename"]

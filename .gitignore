@@ -22,7 +22,6 @@ venv.bak/
 
 # NIH ChestX-ray14 Datasets & Raw Images (Heavy Files)
 CXR8/
-*.png
 *.jpg
 *.jpeg
 *.bmp
@@ -30,14 +29,18 @@ CXR8/
 *.dicom
 *.dcm
 
-# Whitelist documentation and artifact figures
+# Whitelist documentation, sample scans and artifact figures
+*.png
 !outputs/locked_screening_curves.png
 !docs/images/*
+!assets/sample_scans/*.png
 !assets/*
 
 # Large Checkpoints & PyTorch Weights
-outputs/checkpoints/
 *.pth
+tests/outputs/checkpoints/
+outputs/checkpoints/*
+!outputs/checkpoints/best_model_5class.pth
 *.pt
 *.bin
 *.h5
