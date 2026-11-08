@@ -3,7 +3,7 @@ Weakly Supervised Bounding Box Localization from Grad-CAM Heatmaps.
 Enables suspicious region detection without requiring bounding box training supervision.
 """
 
-from typing import List, Tuple, Dict, Any
+from typing import List, Tuple, Dict, Any, Optional
 import numpy as np
 from PIL import Image, ImageDraw
 
