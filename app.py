@@ -174,8 +174,8 @@ def ensure_sample_images_exist(sample_dir: Path):
 
 
 @st.cache_data(show_spinner="Indexing sample X-rays...")
-def get_curated_samples():
-    """Find available sample images with interesting pathologies from curated assets and local dataset."""
+def get_curated_samples(model_scope: str = "5_classes"):
+    """Find available sample images with interesting pathologies filtered by active model scope."""
     sample_assets_dir = WORKSPACE_DIR / "assets" / "sample_scans"
     ensure_sample_images_exist(sample_assets_dir)
 
@@ -239,8 +239,8 @@ def get_curated_samples():
         },
     }
 
-    # If local metadata and full dataset exist, optionally append extra non-redundant pathology samples
-    if IMAGE_DIR.exists() and METADATA_FILE.exists():
+    # Only when 14-disease global spectrum is active, append non-target pathologies (Infiltration, Pneumonia, Atelectasis, etc.)
+    if model_scope == "14_classes" and IMAGE_DIR.exists() and METADATA_FILE.exists():
         try:
             df = pd.read_csv(METADATA_FILE)
             existing_imgs = set(os.listdir(IMAGE_DIR))
@@ -329,7 +329,7 @@ def main():
     meta_info = {"patient_id": "Unknown", "age": "Unknown", "sex": "Unknown", "labels": "Unknown"}
 
     if input_source == "Cas Clinique Curé (CXR-14)":
-        samples = get_curated_samples()
+        samples = get_curated_samples(model_scope=model_scope)
         if samples:
             selected_sample_key = st.selectbox(
                 "Sélectionner un cas clinique de référence :",
